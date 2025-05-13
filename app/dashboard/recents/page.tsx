@@ -4,7 +4,6 @@ import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Loader, Copy, RefreshCw } from "lucide-react";
 
-// Type definition for content items
 type ContentItem = {
      id: number;
      prompt: string;
@@ -12,7 +11,6 @@ type ContentItem = {
      created_at: string;
 };
 
-// Function to fetch user content - would be placed in a separate server actions file
 async function fetchUserContents() {
      try {
           const response = await fetch("/api/user-contents");
