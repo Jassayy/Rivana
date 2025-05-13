@@ -32,7 +32,7 @@ Rivana is a sleek, AI-powered web application built with Next.js that allows use
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/rivana.git
+git clone https://github.com/Jassayy/rivana.git
 cd rivana
 ```
 
