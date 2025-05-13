@@ -14,7 +14,6 @@ import {
 import { UserButton } from "@clerk/nextjs";
 import {
      BookDashed,
-     BookMarked,
      ClockIcon,
      LayoutDashboardIcon,
      ZapIcon,

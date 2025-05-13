@@ -164,7 +164,7 @@ const PricingPage = () => {
 
                                    <div className="border-t border-gray-200 px-6 py-4">
                                         <h4 className="text-sm font-medium text-gray-900 mb-4">
-                                             What's included:
+                                             What&apos;s included:
                                         </h4>
                                         <ul className="space-y-3">
                                              {plan.features.map(
@@ -218,7 +218,7 @@ const PricingPage = () => {
                               </div>
                               <div>
                                    <h3 className="text-lg font-medium text-gray-900">
-                                        What's the difference between basic and
+                                        What&apos;s the difference between basic and
                                         advanced AI models?
                                    </h3>
                                    <p className="mt-2 text-gray-600">

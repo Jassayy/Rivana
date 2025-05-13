@@ -27,7 +27,7 @@ async function fetchUserContents() {
 }
 
 export default function GeneratedContentHistory() {
-     const { isLoaded, userId, isSignedIn } = useAuth();
+     const { isLoaded, isSignedIn } = useAuth();
      const [contentItems, setContentItems] = useState<ContentItem[]>([]);
      const [isLoading, setIsLoading] = useState(false);
      const [error, setError] = useState("");

@@ -9,7 +9,7 @@ import { useAuth } from "@clerk/nextjs";
 import { saveAsTemplate } from "@/actions/savtemplate";
 
 const Page = () => {
-     const { isLoaded, userId, isSignedIn } = useAuth();
+     const { isLoaded, isSignedIn } = useAuth();
      const [prompt, setPrompt] = useState("");
      const [response, setResponse] = useState("");
      const [isLoading, setIsLoading] = useState(false);
@@ -56,9 +56,12 @@ const Page = () => {
           setIsSaving(true);
           setSaveSuccess(false);
           setSaveError("");
-          
+
           try {
-               const result = await saveAsTemplate(templateName.trim(), response);
+               const result = await saveAsTemplate(
+                    templateName.trim(),
+                    response
+               );
 
                if (result.success) {
                     setSaveSuccess(true);
@@ -70,7 +73,9 @@ const Page = () => {
                     setSaveError(result.error || "Failed to save template");
                }
           } catch (error) {
-               setSaveError(error instanceof Error ? error.message : "An error occurred");
+               setSaveError(
+                    error instanceof Error ? error.message : "An error occurred"
+               );
           } finally {
                setIsSaving(false);
           }
@@ -149,7 +154,9 @@ const Page = () => {
 
                                         {isSignedIn && !showTemplateForm && (
                                              <Button
-                                                  onClick={() => setShowTemplateForm(true)}
+                                                  onClick={() =>
+                                                       setShowTemplateForm(true)
+                                                  }
                                                   variant="outline"
                                                   className="mt-4 flex items-center gap-2 hover:cursor-pointer"
                                              >
@@ -158,34 +165,52 @@ const Page = () => {
                                              </Button>
                                         )}
                                    </div>
-                                   
+
                                    {showTemplateForm && isSignedIn && (
                                         <div className="mt-12 mb-4 p-3 border rounded-md">
-                                             <form onSubmit={handleSaveTemplate} className="flex flex-col gap-2">
-                                                  <div className="text-sm font-medium">Save as Template</div>
+                                             <form
+                                                  onSubmit={handleSaveTemplate}
+                                                  className="flex flex-col gap-2"
+                                             >
+                                                  <div className="text-sm font-medium">
+                                                       Save as Template
+                                                  </div>
                                                   <Input
                                                        placeholder="Template name"
                                                        value={templateName}
-                                                       onChange={(e) => setTemplateName(e.target.value)}
+                                                       onChange={(e) =>
+                                                            setTemplateName(
+                                                                 e.target.value
+                                                            )
+                                                       }
                                                        className="text-sm"
                                                   />
                                                   <div className="flex justify-between">
-                                                       <Button 
-                                                            type="button" 
-                                                            variant="outline" 
+                                                       <Button
+                                                            type="button"
+                                                            variant="outline"
                                                             size="sm"
                                                             onClick={() => {
-                                                                 setShowTemplateForm(false);
-                                                                 setTemplateName("");
-                                                                 setSaveError("");
+                                                                 setShowTemplateForm(
+                                                                      false
+                                                                 );
+                                                                 setTemplateName(
+                                                                      ""
+                                                                 );
+                                                                 setSaveError(
+                                                                      ""
+                                                                 );
                                                             }}
                                                        >
                                                             Cancel
                                                        </Button>
-                                                       <Button 
-                                                            type="submit" 
+                                                       <Button
+                                                            type="submit"
                                                             size="sm"
-                                                            disabled={!templateName.trim() || isSaving}
+                                                            disabled={
+                                                                 !templateName.trim() ||
+                                                                 isSaving
+                                                            }
                                                        >
                                                             {isSaving ? (
                                                                  <>
@@ -198,19 +223,27 @@ const Page = () => {
                                                        </Button>
                                                   </div>
                                                   {saveError && (
-                                                       <div className="text-red-500 text-xs mt-1">{saveError}</div>
+                                                       <div className="text-red-500 text-xs mt-1">
+                                                            {saveError}
+                                                       </div>
                                                   )}
                                              </form>
                                         </div>
                                    )}
-                                   
+
                                    {saveSuccess && (
                                         <div className="mb-4 p-2 text-green-700 bg-green-50 border border-green-200 rounded-md text-sm">
                                              Template saved successfully!
                                         </div>
                                    )}
-                                   
-                                   <div className={`text-gray-700 whitespace-pre-wrap text-sm ${showTemplateForm || saveSuccess ? 'pt-0' : 'pt-12'}`}>
+
+                                   <div
+                                        className={`text-gray-700 whitespace-pre-wrap text-sm ${
+                                             showTemplateForm || saveSuccess
+                                                  ? "pt-0"
+                                                  : "pt-12"
+                                        }`}
+                                   >
                                         {response}
                                    </div>
                               </>

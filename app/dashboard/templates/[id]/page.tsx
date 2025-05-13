@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Copy, ArrowLeft, Loader } from "lucide-react";
+import { Copy, ArrowLeft } from "lucide-react";
 
 type Template = {
      id: number;
