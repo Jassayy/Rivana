@@ -3,13 +3,13 @@ import { auth } from "@clerk/nextjs/server";
 import { getDbConnection } from "@/lib/db";
 
 export async function GET(
-     request: NextRequest,
+     _request: NextRequest, //intentionally using this thingy
      { params }: { params: { id: string } }
 ) {
      try {
           const { userId } = await auth();
 
-          if (!userId) { 
+          if (!userId) {
                return NextResponse.json(
                     { error: "Unauthorized" },
                     { status: 401 }

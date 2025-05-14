@@ -30,14 +30,6 @@ export default function GeneratedContentHistory() {
      const [isLoading, setIsLoading] = useState(false);
      const [error, setError] = useState("");
      const [copiedId, setCopiedId] = useState<number | null>(null);
-
-     // Load content items when component mounts or user signs in
-     useEffect(() => {
-          if (isSignedIn) {
-               loadContents();
-          }
-     }, [isSignedIn]);
-
      const loadContents = async () => {
           if (!isSignedIn) return;
 
@@ -54,6 +46,13 @@ export default function GeneratedContentHistory() {
                setIsLoading(false);
           }
      };
+
+     // Load content items when component mounts or user signs in
+     useEffect(() => {
+          if (isSignedIn) {
+               loadContents();
+          }
+     }, [isSignedIn, loadContents]);
 
      const handleCopy = (content: string, id: number) => {
           navigator.clipboard.writeText(content);
@@ -104,7 +103,7 @@ export default function GeneratedContentHistory() {
 
                {isLoading ? (
                     <div className="flex justify-center py-12">
-                         <Loader className="h-8 w-8 animate-spin      " />
+                         <Loader className="h-8 w-8 animate-spin" />
                     </div>
                ) : contentItems.length === 0 ? (
                     <div className="text-center py-8 text-gray-500">
